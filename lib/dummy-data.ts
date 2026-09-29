@@ -1,0 +1,16 @@
+export {
+  blogPosts,
+  caseStudies,
+  ctaBanner,
+  featureBlocks,
+  howItWorksSteps,
+  homeHero,
+  materials,
+  navigation,
+  partnerLogos,
+  productShowcase,
+  products,
+  specComparison,
+  testimonials,
+  trustBadges,
+} from "@/lib/mock-data";

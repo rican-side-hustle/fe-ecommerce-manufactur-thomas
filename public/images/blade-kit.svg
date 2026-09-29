@@ -1,0 +1,36 @@
+<svg width="1200" height="1000" viewBox="0 0 1200 1000" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x2="1200" y2="1000">
+      <stop stop-color="#F2F2EE" />
+      <stop offset="1" stop-color="#D7D9D4" />
+    </linearGradient>
+    <linearGradient id="steel" x1="300" y1="160" x2="880" y2="820">
+      <stop stop-color="#FAFBF8" />
+      <stop offset=".38" stop-color="#9DA39C" />
+      <stop offset=".72" stop-color="#515751" />
+      <stop offset="1" stop-color="#222622" />
+    </linearGradient>
+    <filter id="s">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-opacity=".28" />
+    </filter>
+  </defs>
+  <rect width="1200" height="1000" fill="url(#bg)" />
+  <g filter="url(#s)" transform="translate(180 120) rotate(-8 420 380)">
+    <path
+      d="M58 276L118 152L262 168L354 54L492 126L640 74L722 202L850 252L814 402L872 530L752 626L714 762L558 756L438 832L324 730L170 716L134 564L24 466L88 350Z"
+      fill="url(#steel)" stroke="#686E67" stroke-width="5" />
+    <circle cx="438" cy="440" r="206" fill="#242824" stroke="#858B84" stroke-width="5" />
+    <circle cx="438" cy="440" r="120" fill="#FF5A1F" stroke="#FF9B75" stroke-width="5" />
+    <path d="M438 342L516 391V489L438 538L360 489V391L438 342Z" fill="#171917" />
+    <path
+      d="M438 180V300M438 580V700M178 440H298M578 440H698M252 254L336 338M540 542L624 626M624 254L540 338M336 542L252 626"
+      stroke="#BDC2BB" stroke-width="22" stroke-linecap="round" />
+  </g>
+  <text x="65" y="82" fill="#343834" font-family="Arial" font-weight="700" font-size="14"
+    letter-spacing="4">SHREDX / TOOL STEEL</text>
+  <text x="822" y="876" fill="#343834" font-family="Arial" font-weight="700" font-size="44"
+    letter-spacing="2">D2 BLADE SET</text>
+  <text x="826" y="918" fill="#777D76" font-family="Arial" font-weight="700" font-size="15"
+    letter-spacing="4">HARDENED / REVERSIBLE</text>
+</svg>

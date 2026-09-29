@@ -1,0 +1,46 @@
+<svg width="1200" height="1000" viewBox="0 0 1200 1000" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x2="1200" y2="1000">
+      <stop stop-color="#ECEDE8" />
+      <stop offset="1" stop-color="#CACDC7" />
+    </linearGradient>
+    <linearGradient id="steel" x1="420" y1="160" x2="780" y2="800">
+      <stop stop-color="#F8F9F5" />
+      <stop offset=".45" stop-color="#8F958E" />
+      <stop offset="1" stop-color="#343834" />
+    </linearGradient>
+    <filter id="s">
+      <feDropShadow dx="0" dy="24" stdDeviation="25" flood-opacity=".24" />
+    </filter>
+  </defs>
+  <rect width="1200" height="1000" fill="url(#bg)" />
+  <path d="M0 800L1200 480V1000H0V800Z" fill="#D9DBD5" />
+  <g filter="url(#s)">
+    <path d="M374 146H760L826 358H308L374 146Z" fill="url(#steel)" stroke="#737873" stroke-width="4" />
+    <path d="M414 190H720L752 314H382L414 190Z" fill="#101210" />
+    <rect x="288" y="354" width="558" height="190" rx="10" fill="#2D312D" stroke="#686E67"
+      stroke-width="4" />
+    <rect x="330" y="397" width="364" height="102" rx="5" fill="#0A0B0A" stroke="#5C625B"
+      stroke-width="3" />
+    <g fill="#AEB4AD" stroke="#2B2F2B" stroke-width="3">
+      <path
+        d="M348 432L370 408L401 418L426 398L453 417L482 408L503 435L492 470L458 482L430 465L400 482L370 468Z" />
+      <path
+        d="M500 432L522 408L553 418L578 398L605 417L634 408L655 435L644 470L610 482L582 465L552 482L522 468Z" />
+    </g>
+    <circle cx="426" cy="445" r="18" fill="#FF5A1F" />
+    <circle cx="578" cy="445" r="18" fill="#FF5A1F" />
+    <rect x="694" y="400" width="206" height="94" rx="11" fill="#FF5A1F" />
+    <path d="M324 544H808L762 752H370L324 544Z" fill="#3A3F3A" stroke="#6E756D" stroke-width="4" />
+    <rect x="398" y="584" width="336" height="120" fill="#151715" />
+    <text x="428" y="638" fill="#F3F4EF" font-family="Arial" font-weight="700" font-size="29"
+      letter-spacing="6">SHREDX DS-200</text>
+    <text x="428" y="674" fill="#FF7B4A" font-family="Arial" font-weight="700" font-size="16"
+      letter-spacing="3">BENCHTOP SHREDDER</text>
+  </g>
+  <text x="64" y="82" fill="#323632" font-family="Arial" font-weight="700" font-size="14"
+    letter-spacing="4">SHREDX / PRODUCT 01</text>
+  <text x="936" y="922" fill="#606660" font-family="Arial" font-weight="700" font-size="14"
+    letter-spacing="4">8 MM CUT</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg width="1920" height="1200" viewBox="0 0 1920 1200" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1920" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#080908" />
+      <stop offset="1" stop-color="#1B1E1B" />
+    </linearGradient>
+    <linearGradient id="steel" x1="1040" y1="220" x2="1390" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF0EA" />
+      <stop offset="0.42" stop-color="#9AA098" />
+      <stop offset="1" stop-color="#424742" />
+    </linearGradient>
+    <linearGradient id="darkSteel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#545B54" />
+      <stop offset="1" stop-color="#171917" />
+    </linearGradient>
+    <filter id="shadow" x="690" y="150" width="1050" height="920" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="35" />
+      <feOffset dy="28" />
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .58 0" />
+      <feBlend in="SourceGraphic" />
+    </filter>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" stroke="white" stroke-opacity=".045" />
+    </pattern>
+  </defs>
+  <rect width="1920" height="1200" fill="url(#bg)" />
+  <rect width="1920" height="1200" fill="url(#grid)" />
+  <circle cx="1320" cy="590" r="480" fill="#FF5A1F" fill-opacity=".07" />
+  <path d="M1120 1040H1760" stroke="#FF5A1F" stroke-opacity=".5" stroke-width="2" />
+  <g filter="url(#shadow)">
+    <path d="M936 224H1460L1542 504H854L936 224Z" fill="url(#steel)" stroke="#F7F8F3"
+      stroke-opacity=".45" stroke-width="4" />
+    <path d="M984 278H1416L1458 438H942L984 278Z" fill="#0A0B0A" stroke="#858B84" stroke-width="3" />
+    <rect x="826" y="500" width="744" height="230" rx="12" fill="url(#darkSteel)" stroke="#AAB0A8"
+      stroke-width="4" />
+    <rect x="872" y="546" width="532" height="138" rx="7" fill="#0A0B0A" stroke="#666C65"
+      stroke-width="3" />
+    <g transform="translate(916 571)">
+      <g fill="#B8BDB5" stroke="#313531" stroke-width="3">
+        <path
+          d="M0 41L18 15L48 20L66 0L92 15L121 3L142 26L174 26L184 54L174 82L142 82L121 105L92 93L66 108L48 88L18 93L0 67Z" />
+        <path
+          d="M172 41L190 15L220 20L238 0L264 15L293 3L314 26L346 26L356 54L346 82L314 82L293 105L264 93L238 108L220 88L190 93L172 67Z" />
+      </g>
+      <circle cx="92" cy="54" r="27" fill="#111311" stroke="#FF5A1F" stroke-width="6" />
+      <circle cx="264" cy="54" r="27" fill="#111311" stroke="#FF5A1F" stroke-width="6" />
+    </g>
+    <rect x="1402" y="552" width="242" height="126" rx="14" fill="#FF5A1F" stroke="#FF9C76"
+      stroke-width="3" />
+    <circle cx="1438" cy="615" r="20" fill="#111311" stroke="#FFB497" stroke-width="4" />
+    <path d="M860 730H1536L1476 930H920L860 730Z" fill="#252925" stroke="#737A72" stroke-width="4" />
+    <path d="M958 930L924 1052H990L1030 930M1402 930L1442 1052H1508L1474 930" fill="#303530"
+      stroke="#737A72" stroke-width="4" />
+    <rect x="1014" y="770" width="346" height="104" rx="4" fill="#0D0F0D" stroke="#454B45"
+      stroke-width="3" />
+    <path d="M1050 822H1324" stroke="#FF5A1F" stroke-width="5" />
+    <text x="1050" y="812" fill="#ECEFE8" font-family="Arial, sans-serif" font-weight="700"
+      font-size="28" letter-spacing="6">SHREDX</text>
+    <text x="1050" y="854" fill="#969D94" font-family="Arial, sans-serif" font-weight="700"
+      font-size="17" letter-spacing="4">DS-200 / TWIN SHAFT</text>
+  </g>
+  <g fill="#C3C8C0" font-family="Arial, sans-serif" font-weight="700" font-size="15"
+    letter-spacing="3">
+    <text x="1590" y="430">01 / FEED HOPPER</text>
+    <text x="1590" y="620">02 / CUTTING CHAMBER</text>
+    <text x="1590" y="844">03 / COLLECTION BIN</text>
+  </g>
+  <path d="M1550 422H1574M1570 612H1574M1500 836H1574" stroke="#FF5A1F" stroke-width="2" />
+</svg>
