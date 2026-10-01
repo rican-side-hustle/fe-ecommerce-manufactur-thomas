@@ -1,18 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   ArrowRight,
   ChevronDown,
   Menu,
-  PackageOpen,
+  Search,
   ShoppingBag,
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { CartDrawer } from "@/components/ui/cart-drawer";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/store/ui-store";
@@ -22,32 +23,22 @@ interface NavbarProps {
   items: NavigationItem[];
 }
 
-function BrandMark({ dark }: { dark: boolean }) {
+function BrandMark() {
   return (
     <Link
       href="/"
       aria-label="ShredX Industrial home"
       className="group inline-flex shrink-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
     >
-      <span className="grid size-9 grid-cols-2 gap-0.5 border border-signal-400 p-1.5 transition-transform duration-300 group-hover:rotate-45">
-        <span className="bg-signal-400" />
-        <span className="bg-signal-400" />
-        <span className="bg-signal-400" />
+      <span className="grid size-9 grid-cols-2 gap-0.5 rounded-lg bg-signal-500 p-2">
+        <span className="rounded-sm bg-fg" />
+        <span className="rounded-sm bg-fg" />
+        <span className="rounded-sm bg-fg" />
         <span className="bg-transparent" />
       </span>
-      <span
-        className={cn(
-          "font-display text-base font-black uppercase leading-none tracking-[-0.02em] transition-colors",
-          dark ? "text-ink-950" : "text-white",
-        )}
-      >
+      <span className="font-display text-base font-semibold leading-none tracking-[-0.03em] text-steel-100">
         ShredX
-        <span
-          className={cn(
-            "block text-[0.625rem] tracking-[0.27em] transition-colors",
-            dark ? "text-ink-700" : "text-steel-300",
-          )}
-        >
+        <span className="block text-[0.625rem] font-medium tracking-[0.08em] text-steel-100/60">
           Industrial
         </span>
       </span>
@@ -57,7 +48,6 @@ function BrandMark({ dark }: { dark: boolean }) {
 
 export function Navbar({ items }: NavbarProps) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const {
     isMobileNavOpen,
     isCartOpen,
@@ -68,15 +58,6 @@ export function Navbar({ items }: NavbarProps) {
     closeCart,
   } = useUiStore();
   const hasOverlay = isMobileNavOpen || isCartOpen;
-  const isHome = pathname === "/";
-  const isTransparent = isHome && !isScrolled && !isMobileNavOpen;
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     closeMobileNav();
@@ -104,36 +85,26 @@ export function Navbar({ items }: NavbarProps) {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-          isTransparent ? "border-white/10" : "border-black/10",
-        )}
-      >
-        <div className="bg-signal-500 text-white">
-          <Container className="flex min-h-9 items-center justify-center gap-5 py-1 text-center text-[0.625rem] font-black uppercase tracking-[0.16em] sm:justify-between">
-            <p>New · ShredX Mini DS-200 now available for preorder</p>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-ink-800 bg-ink-900/95 shadow-[0_8px_24px_-20px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <div className="bg-surface-100 text-fg">
+          <Container className="flex min-h-9 items-center justify-center gap-5 py-1 text-center text-xs font-medium tracking-normal sm:justify-between">
+            <Link href="/machines/shredx-m20" className="hover:underline">
+              Introducing the new SHREDX M20 → Explore the machine
+            </Link>
             <Link
               href="/contact"
-              className="hidden items-center gap-1 border-b border-white/60 hover:border-white sm:flex"
+              className="hidden items-center gap-1 border-b border-transparent hover:border-fg sm:flex"
             >
               Questions? Contact us
               <ArrowRight className="size-3" aria-hidden="true" />
             </Link>
           </Container>
         </div>
-        <div
-          className={cn(
-            "transition-colors duration-300",
-            isTransparent
-              ? "bg-transparent"
-              : "bg-[#f7f6f2]/95 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-xl",
-          )}
-        >
-          <Container className="flex h-20 items-center justify-between gap-8">
-            <BrandMark dark={!isTransparent} />
+        <div>
+          <Container className="flex h-20 items-center justify-between gap-4 xl:gap-7">
+            <BrandMark />
 
-            <nav aria-label="Primary navigation" className="hidden lg:block">
+            <nav aria-label="Primary navigation" className="hidden xl:block">
               <ul className="flex items-center gap-1">
                 {items.map((item) => {
                   const isActive =
@@ -146,11 +117,8 @@ export function Navbar({ items }: NavbarProps) {
                         href={item.href}
                         aria-current={isActive ? "page" : undefined}
                         className={cn(
-                          "flex min-h-11 items-center gap-1.5 px-3 text-[0.6875rem] font-black uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400",
-                          isTransparent
-                            ? "text-white/80 hover:text-white"
-                            : "text-ink-800 hover:text-black",
-                          isActive && "text-signal-500",
+                          "flex min-h-11 items-center gap-1.5 px-2 text-sm font-medium text-steel-100 transition-colors hover:text-signal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400",
+                          isActive && "text-signal-300",
                         )}
                       >
                         {item.label}
@@ -163,9 +131,9 @@ export function Navbar({ items }: NavbarProps) {
                       </Link>
 
                       {item.children && (
-                        <div className="invisible absolute left-0 top-full w-[31rem] translate-y-2 border border-white/10 bg-ink-900 p-2 opacity-0 shadow-2xl transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                          <div className="border border-white/10 bg-ink-950 p-3">
-                            <p className="px-3 pb-3 pt-1 text-[0.625rem] font-bold uppercase tracking-industrial text-steel-500">
+                        <div className="invisible absolute left-0 top-full w-[31rem] translate-y-2 rounded-xl border border-surface-200 bg-surface-100 p-2 opacity-0 shadow-2xl transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                          <div className="border border-surface-200 bg-surface-50 p-3">
+                            <p className="px-3 pb-3 pt-1 text-xs font-medium tracking-normal text-steel-500">
                               Explore ShredX
                             </p>
                             <ul>
@@ -173,10 +141,10 @@ export function Navbar({ items }: NavbarProps) {
                                 <li key={child.href}>
                                   <Link
                                     href={child.href}
-                                    className="group/link flex items-center justify-between gap-5 border-t border-white/10 px-3 py-4 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400"
+                                    className="group/link flex items-center justify-between gap-5 border-t border-surface-200 px-3 py-4 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400"
                                   >
                                     <span>
-                                      <span className="block text-sm font-bold uppercase tracking-wide text-white">
+                                      <span className="block text-sm font-semibold tracking-normal text-fg">
                                         {child.label}
                                       </span>
                                       <span className="mt-1 block text-xs leading-5 text-steel-300">
@@ -201,34 +169,33 @@ export function Navbar({ items }: NavbarProps) {
             </nav>
 
             <div className="flex items-center gap-2">
+              <Link href="/search" aria-label="Search" className="icon-button">
+                <Search className="size-4" aria-hidden="true" />
+              </Link>
               <button
                 type="button"
                 onClick={openCart}
                 aria-label={`Open cart with ${cartCount} items`}
-                className={cn(
-                  "relative flex size-11 items-center justify-center border transition-colors hover:border-signal-400 hover:text-signal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400",
-                  isTransparent
-                    ? "border-white/20 text-white"
-                    : "border-black/15 text-ink-950",
-                )}
+                className="icon-button relative"
               >
                 <ShoppingBag className="size-4" aria-hidden="true" />
-                <span className="absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center bg-signal-400 text-[0.625rem] font-black text-ink-950">
+                <span className="absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full bg-warning text-xs font-bold text-ink-950">
                   {cartCount}
                 </span>
               </button>
+              <Link
+                href="/contact"
+                className="button-base button-primary hidden min-h-11 items-center justify-center xl:flex"
+              >
+                Contact Sales
+              </Link>
               <button
                 type="button"
                 onClick={toggleMobileNav}
                 aria-expanded={isMobileNavOpen}
                 aria-controls="mobile-navigation"
                 aria-label={isMobileNavOpen ? "Close menu" : "Open menu"}
-                className={cn(
-                  "flex size-11 items-center justify-center border transition-colors hover:border-signal-400 hover:text-signal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400 lg:hidden",
-                  isTransparent
-                    ? "border-white/20 text-white"
-                    : "border-black/15 text-ink-950",
-                )}
+                className="icon-button xl:hidden"
               >
                 {isMobileNavOpen ? (
                   <X className="size-5" aria-hidden="true" />
@@ -249,16 +216,16 @@ export function Navbar({ items }: NavbarProps) {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.22 }}
-              className="absolute inset-x-0 top-full max-h-[calc(100svh-7.25rem)] overflow-y-auto border-b border-white/10 bg-ink-950 lg:hidden"
+              className="absolute inset-x-0 top-full max-h-[calc(100svh-7.25rem)] overflow-y-auto border-b border-surface-200 bg-surface-50 xl:hidden"
             >
               <Container className="py-5">
-                <ul className="divide-y divide-white/10 border-y border-white/10">
+                <ul className="divide-y divide-surface-200 border-y border-surface-200">
                   {items.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
                         onClick={closeMobileNav}
-                        className="flex items-center justify-between py-5 font-display text-2xl font-black uppercase tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400"
+                        className="flex items-center justify-between py-5 font-display text-2xl font-medium tracking-tight text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal-400"
                       >
                         {item.label}
                         <ArrowRight
@@ -272,7 +239,7 @@ export function Navbar({ items }: NavbarProps) {
                             <li key={child.href}>
                               <Link
                                 href={child.href}
-                                className="block border-l border-white/15 py-2 pl-4 text-xs font-bold uppercase tracking-wider text-steel-300 hover:border-signal-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
+                                className="block border-l border-surface-200 py-2 pl-4 text-xs font-medium tracking-normal text-steel-300 hover:border-signal-400 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
                               >
                                 {child.label}
                               </Link>
@@ -283,82 +250,22 @@ export function Navbar({ items }: NavbarProps) {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href="/contact"
+                  onClick={closeMobileNav}
+                  className="button-base button-primary mt-6 flex w-full"
+                >
+                  Contact Sales{" "}
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
               </Container>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
-      {!isHome && <div className="h-[7.25rem]" aria-hidden="true" />}
+      <div className="h-[7.25rem]" aria-hidden="true" />
 
-      <AnimatePresence>
-        {isCartOpen && (
-          <>
-            <motion.button
-              type="button"
-              aria-label="Close cart"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeCart}
-              className="fixed inset-0 z-[60] cursor-default bg-black/70 backdrop-blur-sm"
-            />
-            <motion.aside
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="cart-title"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 250 }}
-              className="fixed inset-y-0 right-0 z-[70] flex w-full max-w-md flex-col border-l border-white/10 bg-ink-900 shadow-2xl"
-            >
-              <div className="flex h-20 items-center justify-between border-b border-white/10 px-6">
-                <div>
-                  <p className="text-[0.625rem] font-bold uppercase tracking-industrial text-signal-300">
-                    Your selection
-                  </p>
-                  <h2
-                    id="cart-title"
-                    className="font-display text-2xl font-black uppercase text-white"
-                  >
-                    Cart ({cartCount})
-                  </h2>
-                </div>
-                <button
-                  type="button"
-                  onClick={closeCart}
-                  aria-label="Close cart"
-                  className="flex size-11 items-center justify-center border border-white/15 text-white hover:border-signal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
-                >
-                  <X className="size-5" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
-                <span className="flex size-16 items-center justify-center border border-white/10 bg-ink-950 text-steel-500">
-                  <PackageOpen className="size-7" aria-hidden="true" />
-                </span>
-                <p className="mt-6 font-display text-2xl font-black uppercase text-white">
-                  {cartCount > 0
-                    ? "Added to your cart"
-                    : "Start a material loop"}
-                </p>
-                <p className="mt-2 max-w-xs text-sm leading-6 text-steel-300">
-                  {cartCount > 0
-                    ? `${cartCount} item${cartCount === 1 ? "" : "s"} selected. Checkout will connect to the commerce backend in a later pass.`
-                    : "Your cart is empty. Explore compact shredders, cutter sets, and service parts."}
-                </p>
-                <Link
-                  href={cartCount > 0 ? "/contact" : "/products"}
-                  onClick={closeCart}
-                  className="mt-7 border-b border-signal-400 pb-1 text-xs font-bold uppercase tracking-industrial text-signal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
-                >
-                  {cartCount > 0 ? "Request checkout" : "Explore products"}
-                </Link>
-              </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      <CartDrawer />
     </>
   );
 }

@@ -17,12 +17,12 @@ export function FeatureSplit({
   imagePosition = "left",
 }: FeatureSplitProps) {
   return (
-    <section className="overflow-hidden border-b border-white/10 bg-ink-900 py-5 sm:py-8">
+    <section className="overflow-hidden border-b border-surface-200 bg-surface-100 py-5 sm:py-8">
       <Container>
-        <div className="grid border border-white/10 bg-ink-950 lg:grid-cols-2">
+        <div className="grid border border-surface-200 bg-surface-50 lg:grid-cols-2">
           <div
             className={cn(
-              "relative min-h-[24rem] overflow-hidden bg-[#e5e6e1] sm:min-h-[34rem]",
+              "relative min-h-[24rem] overflow-hidden bg-surface-100 sm:min-h-[34rem]",
               imagePosition === "right" && "lg:order-2",
             )}
           >
@@ -33,27 +33,27 @@ export function FeatureSplit({
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            <span className="absolute left-5 top-5 border border-black/15 bg-white/90 px-3 py-2 text-[0.625rem] font-bold uppercase tracking-industrial text-ink-950">
+            <span className="absolute left-5 top-5 border border-surface-200 bg-surface-100/90 px-3 py-2 text-xs font-medium tracking-normal text-fg">
               Engineered detail
             </span>
           </div>
           <div className="flex flex-col justify-center p-7 sm:p-12 lg:p-16 xl:p-20">
-            <p className="text-xs font-bold uppercase tracking-industrial text-signal-300">
+            <p className="text-xs font-medium tracking-normal text-signal-600">
               {feature.eyebrow}
             </p>
-            <h2 className="mt-5 text-balance font-display text-4xl font-black uppercase leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl">
+            <h2 className="mt-5 text-balance font-display text-4xl font-medium leading-[1.12] tracking-[-0.035em] text-fg sm:text-4xl">
               {feature.title}
             </h2>
             <p className="mt-6 max-w-xl text-base leading-7 text-steel-300">
               {feature.description}
             </p>
-            <ul className="mt-8 space-y-4 border-y border-white/10 py-6">
+            <ul className="mt-8 space-y-4 border-y border-surface-200 py-6">
               {feature.bullets.map((bullet) => (
                 <li
                   key={bullet}
-                  className="flex gap-3 text-sm leading-6 text-steel-100"
+                  className="flex gap-3 text-sm leading-6 text-steel-300"
                 >
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center bg-signal-400 text-ink-950">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-signal-100 text-signal-600">
                     <Check className="size-3" aria-hidden="true" />
                   </span>
                   {bullet}

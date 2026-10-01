@@ -24,9 +24,9 @@ export function TrustBadges({ badges }: TrustBadgesProps) {
   return (
     <section
       aria-label="Purchase benefits"
-      className="border-b border-white/10 bg-signal-400 text-ink-950"
+      className="border-b border-surface-200 bg-surface-50 text-fg"
     >
-      <Container className="grid divide-y divide-black/15 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+      <Container className="grid divide-y divide-surface-200 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
         {badges.map((badge) => {
           const Icon = icons[badge.icon];
           return (
@@ -40,10 +40,10 @@ export function TrustBadges({ badges }: TrustBadgesProps) {
                 aria-hidden="true"
               />
               <div>
-                <h2 className="text-xs font-black uppercase tracking-wider">
+                <h2 className="text-xs font-medium tracking-normal">
                   {badge.title}
                 </h2>
-                <p className="mt-1 text-xs leading-5 text-black/65">
+                <p className="mt-1 text-xs leading-5 text-steel-300">
                   {badge.description}
                 </p>
               </div>

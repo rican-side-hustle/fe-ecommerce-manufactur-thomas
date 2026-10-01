@@ -16,12 +16,12 @@ export function PageShell({
   children,
 }: PageShellProps) {
   return (
-    <section className="industrial-grid min-h-[70svh] border-b border-white/10 py-20 sm:py-28">
+    <section className="industrial-grid min-h-[70svh] border-b border-surface-200 py-20 sm:py-28">
       <Container>
-        <p className="text-xs font-bold uppercase tracking-industrial text-signal-300">
+        <p className="text-xs font-medium tracking-normal text-signal-600">
           {eyebrow}
         </p>
-        <h1 className="mt-5 max-w-5xl text-balance font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.045em] text-white sm:text-7xl lg:text-8xl">
+        <h1 className="mt-5 max-w-5xl text-balance font-display text-4xl font-medium leading-[1.12] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
           {title}
         </h1>
         <p className="mt-7 max-w-2xl text-base leading-7 text-steel-300 sm:text-lg">

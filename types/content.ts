@@ -11,6 +11,8 @@ export interface HeroContent {
   primaryCta: CallToAction;
   secondaryCta: CallToAction;
   backgroundImage: string;
+  videoSrc?: string;
+  videoPoster?: string;
   imageAlt: string;
   stat: {
     value: string;
@@ -64,6 +66,8 @@ export interface Product {
   leadTime: string;
   specs: ProductSpec[];
   materials: string[];
+  compatibility?: string[];
+  availability?: string;
 }
 
 export interface CaseStudy {
@@ -145,4 +149,87 @@ export interface CtaBannerContent {
   title: string;
   description: string;
   cta: CallToAction;
+}
+
+export interface ProductConfigurationOption {
+  id: string;
+  label: string;
+  priceDelta: number;
+}
+
+export interface ProductConfiguration {
+  motor: ProductConfigurationOption[];
+  blade: ProductConfigurationOption[];
+  hopper: ProductConfigurationOption[];
+  collection: ProductConfigurationOption[];
+}
+
+export interface MachineHotspot {
+  id: string;
+  label: string;
+  description: string;
+  x: number;
+  y: number;
+}
+
+export interface Application {
+  slug: string;
+  name: string;
+  description: string;
+  challenge: string;
+  recommendedSetup: string;
+  code: string;
+}
+
+export interface ResourceItem {
+  id: string;
+  title: string;
+  description: string;
+  category: "Documentation" | "Article" | "Media";
+  format: string;
+  href: string;
+}
+
+export interface VideoItem {
+  id: string;
+  title: string;
+  category:
+    | "Machine Demo"
+    | "How It Works"
+    | "Maintenance"
+    | "Applications"
+    | "Case Studies"
+    | "Engineering";
+  duration: string;
+  image: string;
+}
+
+export interface FaqItem {
+  id: string;
+  category:
+    | "General"
+    | "Product"
+    | "Technical"
+    | "Shipping"
+    | "Warranty"
+    | "Maintenance"
+    | "Orders";
+  question: string;
+  answer: string;
+}
+
+export interface HomepageStat {
+  value: string;
+  label: string;
+}
+
+export interface EngineeringFeature {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface WhyFeature {
+  title: string;
+  description: string;
 }

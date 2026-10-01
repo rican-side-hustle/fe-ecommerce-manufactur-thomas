@@ -17,32 +17,32 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
     <section
       id="how-it-works"
       aria-labelledby="process-heading"
-      className="border-b border-white/10 bg-ink-900 py-20 sm:py-28"
+      className="border-b border-surface-200 bg-surface-100 py-20 sm:py-28"
     >
       <Container>
         <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr]">
           <div>
-            <p className="text-xs font-bold uppercase tracking-industrial text-signal-300">
+            <p className="text-xs font-medium tracking-normal text-signal-600">
               From scrap to sorted flake
             </p>
             <h2
               id="process-heading"
-              className="mt-4 max-w-xl text-balance font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.045em] text-white sm:text-7xl"
+              className="mt-4 max-w-xl text-balance font-display text-4xl font-medium leading-[1.12] tracking-[-0.035em] text-fg sm:text-4xl"
             >
               A material loop in three moves.
             </h2>
           </div>
-          <div className="grid border-l border-t border-white/10 sm:grid-cols-3 lg:self-end">
+          <div className="grid border-l border-t border-surface-200 sm:grid-cols-3 lg:self-end">
             {steps.map((step, index) => (
               <article
                 key={step.number}
-                className="relative min-h-72 border-b border-r border-white/10 p-6"
+                className="relative min-h-72 border-b border-r border-surface-200 p-6"
               >
-                <span className="text-xs font-bold tracking-industrial text-signal-300">
+                <span className="text-xs font-medium tracking-normal text-signal-600">
                   {step.number}
                 </span>
                 <div className="mt-24">
-                  <h3 className="font-display text-2xl font-black uppercase text-white">
+                  <h3 className="font-display text-2xl font-medium text-fg">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-steel-300">
@@ -51,7 +51,7 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
                 </div>
                 {index < steps.length - 1 && (
                   <ArrowRight
-                    className="absolute -right-3 top-6 z-10 hidden size-6 bg-ink-900 p-1 text-steel-500 sm:block"
+                    className="absolute -right-3 top-6 z-10 hidden size-6 bg-surface-100 p-1 text-steel-500 sm:block"
                     aria-hidden="true"
                   />
                 )}

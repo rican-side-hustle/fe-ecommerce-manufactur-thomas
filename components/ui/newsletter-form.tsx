@@ -26,7 +26,7 @@ export function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-5">
-      <div className="flex border-b border-white/30 focus-within:border-signal-400">
+      <div className="flex border-b border-ink-700 focus-within:border-signal-400">
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
@@ -34,7 +34,7 @@ export function NewsletterForm() {
           id="newsletter-email"
           type="email"
           placeholder="WORK@COMPANY.COM"
-          className="min-w-0 flex-1 bg-transparent py-3 text-xs font-bold uppercase tracking-wider text-white outline-none placeholder:text-steel-500"
+          className="min-w-0 flex-1 bg-transparent py-3 text-xs font-medium tracking-normal text-steel-100 outline-none placeholder:text-steel-100/50"
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "newsletter-error" : undefined}
           {...register("email")}
@@ -42,7 +42,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           aria-label="Subscribe to updates"
-          className="flex size-11 items-center justify-center text-signal-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
+          className="flex size-11 items-center justify-center text-signal-300 hover:text-steel-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400"
         >
           <ArrowRight className="size-4" aria-hidden="true" />
         </button>

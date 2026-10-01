@@ -8,33 +8,53 @@ const config = {
   theme: {
     extend: {
       colors: {
+        surface: { 50: "#FFFFFF", 100: "#F3F5F7", 200: "#D5DBE0" },
         ink: {
-          950: "#070807",
-          900: "#0d0f0d",
-          850: "#131613",
-          800: "#1a1d1a",
-          700: "#292d29",
+          950: "#1E2A36",
+          900: "#2B3640",
+          850: "#34424E",
+          800: "#41505E",
+          700: "#506170",
         },
+        fg: "#1E2A36",
+        muted: "#5F6C78",
+        warning: "#FFC21A",
         signal: {
-          300: "#ff9b75",
-          400: "#ff6a32",
-          500: "#ff5317",
+          50: "#FDE9DD",
+          100: "#F9CFAF",
+          300: "#FF9A5C",
+          400: "#FF7A33",
+          500: "#F25C05",
+          600: "#D94F00",
+          700: "#B24200",
         },
         steel: {
-          100: "#f1f3ed",
-          300: "#aeb5aa",
-          500: "#687066",
+          100: "#F3F5F7",
+          300: "#5F6C78",
+          500: "#5F6C78",
         },
       },
       fontFamily: {
-        sans: ["Inter", "Segoe UI", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["Arial Narrow", "Roboto Condensed", "Inter", "sans-serif"],
+        sans: [
+          "var(--font-dm-sans)",
+          "Segoe UI",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        display: [
+          "var(--font-space-grotesk)",
+          "var(--font-dm-sans)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       letterSpacing: {
-        industrial: "0.16em",
+        industrial: "0.02em",
       },
       boxShadow: {
-        glow: "0 0 48px rgba(255, 90, 31, 0.18)",
+        glow: "0 16px 38px -18px rgba(242, 92, 5, 0.3)",
       },
       keyframes: {
         marquee: {

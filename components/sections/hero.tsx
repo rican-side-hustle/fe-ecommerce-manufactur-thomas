@@ -1,162 +1,137 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { ArrowRight, Check, MoveUpRight } from "lucide-react";
 
 import { buttonStyles } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 import type { HeroContent } from "@/types/content";
 
 interface HeroProps {
   content: HeroContent;
 }
 
-const reveal = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function Hero({ content }: HeroProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
-  const [titleBefore, titleAfter] = content.highlight
+  const [before, after] = content.highlight
     ? content.title.split(content.highlight)
     : [content.title, ""];
 
   return (
     <section
-      ref={sectionRef}
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-screen overflow-hidden border-b border-white/10"
+      className="hero-stage relative isolate overflow-hidden"
     >
-      <motion.div
-        aria-hidden="true"
-        className="absolute -inset-y-[14%] inset-x-0 -z-30"
-        style={{ y: shouldReduceMotion ? 0 : imageY }}
-      >
+      <div className="absolute inset-0">
+        {content.videoSrc && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={content.videoPoster}
+            aria-hidden="true"
+            className="absolute inset-0 size-full object-cover motion-reduce:hidden"
+          >
+            <source src={content.videoSrc} type="video/mp4" />
+          </video>
+        )}
         <Image
           src={content.backgroundImage}
-          alt=""
+          alt={content.imageAlt}
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[62%_center] grayscale-[30%]"
+          className={
+            content.videoSrc
+              ? "object-cover motion-safe:hidden"
+              : "object-cover"
+          }
         />
-      </motion.div>
-      <p className="sr-only">{content.imageAlt}</p>
-      <div className="absolute inset-0 -z-20 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/20" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/30" />
-      <div className="absolute inset-y-0 left-[7%] -z-10 hidden w-px bg-white/10 xl:block" />
-      <div className="absolute inset-y-0 right-[7%] -z-10 hidden w-px bg-white/10 xl:block" />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface-100/85 via-surface-100/15 to-transparent"
+          aria-hidden="true"
+        />
+      </div>
 
-      <Container className="relative flex flex-1 items-center pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: 0.12, delayChildren: 0.16 }}
-          className="max-w-5xl"
-        >
-          <motion.div
-            variants={reveal}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="mb-6 flex items-center gap-3"
-          >
-            <span className="h-px w-10 bg-signal-400" aria-hidden="true" />
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-signal-300">
-              {content.eyebrow}
-            </p>
-          </motion.div>
-
-          <motion.h1
-            id="hero-title"
-            variants={reveal}
-            transition={{ duration: 0.65, ease: "easeOut" }}
-            className="max-w-4xl text-balance font-display text-[clamp(3.75rem,9.5vw,8.5rem)] font-black uppercase leading-[0.82] tracking-[-0.055em] text-white"
-          >
-            {content.highlight ? (
-              <>
-                {titleBefore}
-                <span className="font-serif font-medium normal-case italic tracking-[-0.04em] text-signal-300">
-                  {content.highlight}
-                </span>
-                {titleAfter}
-              </>
-            ) : (
-              content.title
-            )}
-          </motion.h1>
-
-          <motion.p
-            variants={reveal}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="mt-8 max-w-xl text-base leading-7 text-steel-300 sm:text-lg sm:leading-8"
-          >
-            {content.description}
-          </motion.p>
-
-          <motion.div
-            variants={reveal}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
-          >
-            <Link
-              href={content.primaryCta.href}
-              className={cn(buttonStyles("primary"), "group")}
-            >
-              {content.primaryCta.label}
-              <ArrowUpRight
-                className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      <Container className="relative z-10 flex min-h-[86svh] flex-col justify-end pb-16 pt-32 sm:min-h-[88svh] sm:pb-20">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="mb-7 inline-flex items-center gap-2 rounded-full border border-surface-200 bg-white/75 px-4 py-2 text-xs font-semibold text-signal-600 shadow-sm backdrop-blur-md">
+              <span
+                className="size-1.5 rounded-full bg-signal-500"
                 aria-hidden="true"
               />
-            </Link>
-            <Link
-              href={content.secondaryCta.href}
-              className={buttonStyles("secondary")}
+              {content.eyebrow}
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1
+              id="hero-title"
+              className="text-balance font-display text-[clamp(3.4rem,6.3vw,6.5rem)] font-semibold leading-[0.97] tracking-[-0.065em] text-fg"
             >
-              {content.secondaryCta.label}
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.75, duration: 0.55 }}
-          className="absolute bottom-8 right-5 hidden border-l border-signal-400 pl-5 sm:block lg:bottom-12 lg:right-12"
-        >
-          <p className="font-display text-4xl font-black text-white">
-            {content.stat.value}
-          </p>
-          <p className="mt-1 text-[0.625rem] font-bold uppercase tracking-industrial text-steel-300">
-            {content.stat.label}
-          </p>
-        </motion.div>
-
-        <Link
-          href="#product-showcase"
-          aria-label="Scroll to product showcase"
-          className="absolute bottom-8 left-5 hidden items-center gap-3 text-[0.625rem] font-bold uppercase tracking-industrial text-steel-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400 sm:flex lg:bottom-12 lg:left-12"
-        >
-          <span className="flex size-9 items-center justify-center border border-white/20 bg-black/20">
-            <ArrowDown className="size-4" aria-hidden="true" />
-          </span>
-          Discover
-        </Link>
+              {before}
+              {content.highlight && (
+                <span className="text-signal-500">{content.highlight}</span>
+              )}
+              {after}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-7 max-w-lg text-base leading-8 text-steel-300 sm:text-lg">
+              {content.description}
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href={content.primaryCta.href}
+                className={buttonStyles("primary")}
+              >
+                {content.primaryCta.label}
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href={content.secondaryCta.href}
+                className={buttonStyles("secondary")}
+              >
+                {content.secondaryCta.label}
+                <MoveUpRight className="size-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </Reveal>
+          <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-steel-300">
+            {["Compact by design", "Built to last", "Expert support"].map(
+              (label) => (
+                <span key={label} className="inline-flex items-center gap-2">
+                  <Check
+                    className="size-4 text-signal-500"
+                    aria-hidden="true"
+                  />
+                  {label}
+                </span>
+              ),
+            )}
+          </div>
+        </div>
       </Container>
+
+      <div className="absolute bottom-6 right-6 z-10 hidden rounded-2xl border border-surface-200 bg-white/85 px-6 py-5 shadow-[0_12px_28px_-18px_rgba(30,42,54,0.25)] backdrop-blur-xl md:block">
+        <p className="text-xs text-steel-300">Meet your next machine</p>
+        <p className="mt-1 font-display text-lg font-semibold text-fg">
+          SHREDX M20
+        </p>
+        <p className="mt-3 border-t border-surface-200 pt-3">
+          <span className="font-display text-2xl font-semibold text-fg">
+            {content.stat.value}
+          </span>{" "}
+          <span className="text-xs text-steel-300">{content.stat.label}</span>
+        </p>
+      </div>
     </section>
   );
 }

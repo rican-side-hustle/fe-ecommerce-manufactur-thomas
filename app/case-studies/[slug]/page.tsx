@@ -23,7 +23,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <article>
-      <header className="relative isolate flex min-h-[72svh] items-end overflow-hidden border-b border-white/10">
+      <header className="relative isolate flex min-h-[72svh] items-end overflow-hidden border-b border-surface-200">
         <Image
           src={study.image}
           alt={study.imageAlt}
@@ -32,34 +32,34 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           sizes="100vw"
           className="-z-20 object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/55 to-black/20" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/55 to-ink-950/20" />
         <Container className="pb-12 pt-28 sm:pb-16">
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-[0.625rem] font-bold uppercase tracking-industrial text-steel-300 hover:text-white"
+            className="inline-flex items-center gap-2 text-xs font-medium tracking-normal text-steel-100/80 hover:text-steel-100"
           >
             <ArrowLeft className="size-3" aria-hidden="true" /> All stories
           </Link>
-          <p className="mt-10 text-xs font-bold uppercase tracking-industrial text-signal-300">
+          <p className="mt-10 text-xs font-medium tracking-normal text-signal-300">
             {study.client}
           </p>
-          <h1 className="mt-4 max-w-5xl text-balance font-display text-5xl font-black uppercase leading-[0.88] tracking-[-0.05em] text-white sm:text-7xl lg:text-8xl">
+          <h1 className="mt-4 max-w-5xl text-balance font-display text-4xl font-medium leading-[1.12] tracking-[-0.035em] text-steel-100 sm:text-4xl lg:text-6xl">
             {study.title}
           </h1>
         </Container>
       </header>
-      <section className="border-b border-white/10 bg-ink-950 py-20 sm:py-28">
+      <section className="border-b border-surface-200 bg-surface-50 py-20 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
           <div className="border-l-2 border-signal-400 pl-6">
-            <p className="text-[0.625rem] font-bold uppercase tracking-industrial text-steel-500">
+            <p className="text-xs font-medium tracking-normal text-steel-500">
               Measured result
             </p>
-            <p className="mt-3 font-display text-4xl font-black uppercase leading-none text-white">
+            <p className="mt-3 font-display text-4xl font-medium leading-none text-fg">
               {study.result}
             </p>
           </div>
           <div>
-            <p className="text-xl leading-8 text-steel-100 sm:text-2xl sm:leading-9">
+            <p className="text-xl leading-8 text-fg sm:text-2xl sm:leading-9">
               {study.summary}
             </p>
             <div className="mt-10 space-y-6 text-base leading-8 text-steel-300">
@@ -77,7 +77,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </div>
             <Link
               href="/contact"
-              className="mt-10 inline-flex items-center gap-2 border-b border-signal-400 pb-1 text-xs font-bold uppercase tracking-industrial text-white hover:text-signal-300"
+              className="mt-10 inline-flex items-center gap-2 border-b border-signal-400 pb-1 text-xs font-medium tracking-normal text-fg hover:text-signal-600"
             >
               Plan your material loop{" "}
               <ArrowUpRight className="size-4" aria-hidden="true" />
